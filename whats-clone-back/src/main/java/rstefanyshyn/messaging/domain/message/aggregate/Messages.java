@@ -1,4 +1,4 @@
-package rstefanyshyn.messaging.domain.aggregate;
+package rstefanyshyn.messaging.domain.message.aggregate;
 
 import rstefanyshyn.shared.error.domain.Assert;
 

@@ -1,7 +1,8 @@
-package rstefanyshyn.messaging.domain.aggregate;
+package rstefanyshyn.messaging.domain.message.aggregate;
 
 import org.jilt.Builder;
 import rstefanyshyn.messaging.domain.message.vo.ConversationName;
+import rstefanyshyn.messaging.domain.user.vo.UserPublicId;
 import rstefanyshyn.shared.error.domain.Assert;
 
 import java.util.Set;

@@ -1,4 +1,4 @@
-package rstefanyshyn.messaging.domain.aggregate;
+package rstefanyshyn.messaging.domain.message.aggregate;
 
 import org.jilt.Builder;
 import rstefanyshyn.messaging.domain.message.vo.*;
