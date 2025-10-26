@@ -71,7 +71,8 @@ public class MessageEntity extends AbstractAuditingEntity<Long> {
     }
 
     public static MessageEntity from(Message message) {
-        rstefanyshyn.infrastructure.secondary.entity.MessageEntityBuilder messageEntityBuilder = rstefanyshyn.infrastructure.secondary.entity.MessageEntityBuilder.messageEntity();
+        rstefanyshyn.infrastructure.secondary.entity.MessageEntityBuilder messageEntityBuilder
+                = rstefanyshyn.infrastructure.secondary.entity.MessageEntityBuilder.messageEntity();
 
         if (message.getContent().type().equals(MessageType.TEXT)) {
             messageEntityBuilder.text(message.getContent().text());
