@@ -2,7 +2,10 @@
 <databaseChangeLog
         xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                            http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <!-- Properties -->
     <property name="now" value="current_timestamp" dbms="postgresql"/>
     <property name="floatType" value="float4" dbms="postgresql"/>
     <property name="clobType" value="clob" dbms="postgresql"/>
@@ -10,9 +13,32 @@
     <property name="uuidType" value="uuid" dbms="postgresql"/>
     <property name="datetimeType" value="datetime" dbms="postgresql"/>
 
-    <include file="/dbd/changelog/00000000000000_init.xml" relativeToChangelogFile="false"/>
-    <include file="/dbd/changelog/00000000000001_user.xml" relativeToChangelogFile="false"/>
-    <include file="/dbd/changelog/00000000000002_conversation.xml" relativeToChangelogFile="false"/>
-    <include file="/dbd/changelog/00000000000003_message.xml" relativeToChangelogFile="false"/>
+    <!-- Includes (без / ) -->
+    <include file="db/changelog/00000000000000_init.xml"/>
+    <include file="db/changelog/00000000000001_user.xml"/>
+    <include file="db/changelog/00000000000002_conversation.xml"/>
+    <include file="db/changelog/00000000000003_message.xml"/>
+
+    <!-- Event publication table -->
+    <changeSet id="00000000000000-event" author="codecake">
+        <createTable tableName="event_publication">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="listener_id" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="event_type" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="serialized_event" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="publication_date" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="completion_date" type="TIMESTAMP WITH TIME ZONE"/>
+        </createTable>
+    </changeSet>
 
 </databaseChangeLog>
