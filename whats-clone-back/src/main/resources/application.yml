@@ -50,7 +50,7 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          issuer-uri: http://localhost:9080/realms/whatsapp-clone
+          issuer-uri: http://localhost:9081/realms/whatsapp-clone
   devtools:
     restart:
       enabled: false
