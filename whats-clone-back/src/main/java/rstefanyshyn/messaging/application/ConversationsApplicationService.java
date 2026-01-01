@@ -7,10 +7,7 @@ import rstefanyshyn.messaging.domain.message.aggregate.Conversation;
 import rstefanyshyn.messaging.domain.message.aggregate.ConversationToCreate;
 import rstefanyshyn.messaging.domain.message.repository.ConversationRepository;
 import rstefanyshyn.messaging.domain.message.repository.MessageRepository;
-import rstefanyshyn.messaging.domain.message.service.ConversationCreator;
-import rstefanyshyn.messaging.domain.message.service.ConversationDeleter;
-import rstefanyshyn.messaging.domain.message.service.ConversationReader;
-import rstefanyshyn.messaging.domain.message.service.MessageChangeNotifier;
+import rstefanyshyn.messaging.domain.message.service.*;
 import rstefanyshyn.messaging.domain.message.vo.ConversationPublicId;
 import rstefanyshyn.messaging.domain.user.aggregate.User;
 import rstefanyshyn.messaging.domain.user.repository.UserRepository;
@@ -27,7 +24,7 @@ public class ConversationsApplicationService {
     private final ConversationReader conversationReader;
     private final ConversationDeleter conversationDeleter;
     private final UsersApplicationService usersApplicationService;
-    // TODO private final ConversationViewed conversationViewed;
+    private final ConversationViewed conversationViewed;
 
     public ConversationsApplicationService(ConversationRepository conversationRepository,
                                            UserRepository userRepository,
@@ -39,7 +36,7 @@ public class ConversationsApplicationService {
         this.conversationReader = new ConversationReader(conversationRepository);
         this.conversationDeleter = new ConversationDeleter(conversationRepository, messageChangeNotifier);
         this.usersApplicationService = usersApplicationService;
-      //  this.conversationViewed = new ConversationViewed(messageRepository, messageChangeNotifier, userReader);
+        this.conversationViewed = new ConversationViewed(messageRepository, messageChangeNotifier, userReader);
     }
 
     @Transactional
@@ -67,9 +64,9 @@ public class ConversationsApplicationService {
         return this.conversationReader.getOneByPublicIdAndUserId(conversationPublicId, authenticatedUser.getUserPublicId());
     }
 
-//    @Transactional
-//    public State<Integer, String> markConversationAsRead(ConversationPublicId conversationPublicId) {
-//        User authenticatedUser = usersApplicationService.getAuthenticatedUser();
-//        return conversationViewed.markAsRead(conversationPublicId, authenticatedUser.getUserPublicId());
-//    }
+    @Transactional
+    public State<Integer, String> markConversationAsRead(ConversationPublicId conversationPublicId) {
+        User authenticatedUser = usersApplicationService.getAuthenticatedUser();
+        return conversationViewed.markAsRead(conversationPublicId, authenticatedUser.getUserPublicId());
+    }
 }
