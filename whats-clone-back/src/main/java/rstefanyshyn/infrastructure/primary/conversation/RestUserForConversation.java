@@ -14,7 +14,8 @@ public record RestUserForConversation(String lastName, String firstName,
                                       Instant lastSeen) {
 
     public static RestUserForConversation from(User user) {
-        RestUserForConversationBuilder restUserForConversationBuilder = RestUserForConversationBuilder.restUserForConversation();
+        rstefanyshyn.infrastructure.primary.conversation.RestUserForConversationBuilder restUserForConversationBuilder
+                = rstefanyshyn.infrastructure.primary.conversation.RestUserForConversationBuilder.restUserForConversation();
 
         if (user.getImageUrl() != null) {
             restUserForConversationBuilder.imageUrl(user.getImageUrl().value());

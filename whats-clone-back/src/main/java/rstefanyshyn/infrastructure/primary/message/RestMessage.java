@@ -42,7 +42,8 @@ public class RestMessage {
     }
 
     public static RestMessage from(Message message) {
-        rstefanyshyn.infrastructure.primary.message.RestMessageBuilder restMessageBuilder = rstefanyshyn.infrastructure.primary.message.RestMessageBuilder.restMessage()
+        rstefanyshyn.infrastructure.primary.message.RestMessageBuilder restMessageBuilder
+                = rstefanyshyn.infrastructure.primary.message.RestMessageBuilder.restMessage()
                 .textContent(message.getContent().text())
                 .sendDate(message.getSentTime().date())
                 .state(message.getSendState())

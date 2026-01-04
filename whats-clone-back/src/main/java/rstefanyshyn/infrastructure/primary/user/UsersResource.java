@@ -1,4 +1,5 @@
 package rstefanyshyn.infrastructure.primary.user;
+
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ProblemDetail;
@@ -50,7 +51,8 @@ public class UsersResource {
         if (lastSeen.isPresent()) {
             return ResponseEntity.ok(lastSeen.get());
         } else {
-            ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(HttpStatus.BAD_REQUEST, "Unable to fetch the presence of the user " + publicId);
+            ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(HttpStatus.BAD_REQUEST,
+                    "Unable to fetch the presence of the user " + publicId);
             return ResponseEntity.of(problemDetail).build();
         }
     }

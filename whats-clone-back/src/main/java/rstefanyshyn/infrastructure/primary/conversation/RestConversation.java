@@ -1,4 +1,5 @@
 package rstefanyshyn.infrastructure.primary.conversation;
+
 import org.jilt.Builder;
 import rstefanyshyn.infrastructure.primary.message.RestMessage;
 import rstefanyshyn.messaging.domain.message.aggregate.Conversation;
