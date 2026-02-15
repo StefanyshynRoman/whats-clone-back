@@ -14,12 +14,14 @@ public class ConversationDeleter {
     private final ConversationRepository conversationRepository;
     private final MessageChangeNotifier messageChangeNotifier;
 
-    public ConversationDeleter(ConversationRepository conversationRepository, MessageChangeNotifier messageChangeNotifier) {
+    public ConversationDeleter(ConversationRepository conversationRepository,
+                               MessageChangeNotifier messageChangeNotifier) {
         this.conversationRepository = conversationRepository;
         this.messageChangeNotifier = messageChangeNotifier;
     }
 
-    public State<ConversationPublicId, String> deleteById(ConversationPublicId conversationId, User connectedUser) {
+    public State<ConversationPublicId, String> deleteById(ConversationPublicId conversationId,
+                                                          User connectedUser) {
         State<ConversationPublicId, String> stateResult;
 
         Optional<Conversation> conversationToDeleteOpt = this.conversationRepository

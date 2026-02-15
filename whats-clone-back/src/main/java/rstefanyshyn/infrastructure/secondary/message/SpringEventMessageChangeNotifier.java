@@ -19,7 +19,8 @@ public class SpringEventMessageChangeNotifier implements MessageChangeNotifier {
     NotificationService notificationService;
     private ApplicationEventPublisher applicationEventPublisher;
 
-    public SpringEventMessageChangeNotifier(ApplicationEventPublisher applicationEventPublisher, NotificationService notificationService) {
+    public SpringEventMessageChangeNotifier(ApplicationEventPublisher applicationEventPublisher,
+                                            NotificationService notificationService) {
         this.applicationEventPublisher = applicationEventPublisher;
         this.notificationService = notificationService;
     }
@@ -34,14 +35,17 @@ public class SpringEventMessageChangeNotifier implements MessageChangeNotifier {
     @Override
     public State<Void, String> delete(ConversationPublicId conversationPublicId,
                                       List<UserPublicId> userToNotify) {
-        ConversationIdWithUsers conversationIdWithUsers = new ConversationIdWithUsers(conversationPublicId, userToNotify);
+        ConversationIdWithUsers conversationIdWithUsers = new ConversationIdWithUsers(conversationPublicId,
+                                                                                      userToNotify);
         applicationEventPublisher.publishEvent(conversationIdWithUsers);
         return State.<Void, String>builder().forSuccess();
     }
 
     @Override
-    public State<Void, String> view(ConversationViewedForNotification conversationViewedForNotification, List<UserPublicId> usersToNotify) {
-        MessageIdWithUsers messageIdWithUsers = new MessageIdWithUsers(conversationViewedForNotification, usersToNotify);
+    public State<Void, String> view(ConversationViewedForNotification conversationViewedForNotification,
+                                    List<UserPublicId> usersToNotify) {
+        MessageIdWithUsers messageIdWithUsers = new MessageIdWithUsers(conversationViewedForNotification,
+                                                                      usersToNotify);
         applicationEventPublisher.publishEvent(messageIdWithUsers);
         return State.<Void, String>builder().forSuccess();
     }

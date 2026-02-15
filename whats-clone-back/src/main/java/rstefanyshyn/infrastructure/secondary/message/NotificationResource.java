@@ -19,7 +19,6 @@ public class NotificationResource {
 
     @GetMapping("/subscribe")
     public SseEmitter subscribe() {
-        return notificationService.addEmitter(
-                new UserEmail(AuthenticatedUser.username().username()));
+        return notificationService.addEmitter(new UserEmail(AuthenticatedUser.username().username()));
     }
 }
