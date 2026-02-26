@@ -40,7 +40,8 @@ public class MessageCreator {
                 .build();
 
         State<Message, String> creationState;
-        Optional<Conversation> conversationToLink = conversationReader.getOneByPublicId(messageSendNew.conversationPublicId());
+        Optional<Conversation> conversationToLink = conversationReader
+                .getOneByPublicId(messageSendNew.conversationPublicId());
         if (conversationToLink.isPresent()) {
             Message messageSaved = messageRepository.save(newMessage, sender, conversationToLink.get());
             messageChangeNotifier.send(newMessage, conversationToLink.get().getMembers().stream()

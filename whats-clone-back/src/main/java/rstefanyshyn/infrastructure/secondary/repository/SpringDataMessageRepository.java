@@ -35,7 +35,6 @@ public class SpringDataMessageRepository implements MessageRepository {
         if (message.getContent().type() != MessageType.TEXT) {
             jpaMessageBinaryContent.save(messageEntity.getContentBinary());
         }
-
         MessageEntity messageSaved = jpaMessageRepository.save(messageEntity);
         return MessageEntity.toDomain(messageSaved);
     }
